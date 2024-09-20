@@ -24,4 +24,5 @@ resource "azurerm_role_assignment" "role_assignment" {
   scope                = each.value.scope
   role_definition_name = each.value.role_name
   principal_id         = each.value.object_id
+  principal_type       = each.value.principal_type
 }
