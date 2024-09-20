@@ -37,9 +37,11 @@ resource "azurerm_logic_app_workflow" "workflow" {
   enabled             = var.enabled
 
   dynamic "identity" {
-    for_each = var.use_managed_identity ? [1] : []
+    for_each = length(var.user_assigned_identity_ids) > 0 ? [1] : var.use_managed_identity ? [1] : []
     content {
-      type = "SystemAssigned"
+      type = length(var.user_assigned_identity_ids) > 0 ? "UserAssigned" : "SystemAssigned"
+
+      identity_ids = length(var.user_assigned_identity_ids) > 0 ? var.user_assigned_identity_ids : null
     }
   }
 
@@ -62,6 +64,7 @@ resource "azurerm_logic_app_workflow" "workflow" {
     }
   }
 }
+
 
 // Deploy workflow as ARM template conditional when arm_template_path is specified
 // To export the ARM template from the Azure portal go to Logic App > Automation > Export Template

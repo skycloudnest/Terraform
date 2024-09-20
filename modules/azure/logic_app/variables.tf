@@ -67,6 +67,12 @@ variable "use_managed_identity" {
   default     = false
 }
 
+variable "user_assigned_identity_ids" {
+  description = "List of user-assigned managed identity IDs"
+  type        = list(string)
+  default     = []
+}
+
 variable "trigger_oauth_policy_claims" {
   type        = map(string)
   description = "Claims validated by OAuth policy in HTTP trigger"
