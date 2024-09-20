@@ -117,3 +117,15 @@ variable "app_scale_limit" {
   description = "The number of workers this function app can scale out to. Only applicable to apps on the Consumption and Premium plan."
   default = 200
 }
+
+variable "use_managed_identity" {
+  type        = bool
+  description = "Use Managed Identity for this logic app"
+  default     = false
+}
+
+variable "user_assigned_identity_ids" {
+  description = "List of user-assigned managed identity IDs"
+  type        = list(string)
+  default     = []
+}
