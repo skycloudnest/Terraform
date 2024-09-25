@@ -49,7 +49,7 @@ variable "redirect_uris" {
 variable "virtual_network_type" {
   type        = string
   description = "The id of the subnet that will be used for the API Management."
-  default     = "None"
+  default     = null
 }
 
 variable "subnet_id" {
